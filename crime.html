@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>JS tabular data</title>
+    <!-- Link chart.js. -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <!-- Create canvas-elements. -->
+  <canvas id="chart1" width="800" height="400"></canvas>
+  <canvas id="chart2" width="800" height="400"></canvas>
+
+  <script>
+
+    /* Create function for plotting data. */
+    const chartData = async () => {
+      /* Get data and destructure. */
+      const [ pahoinpitely, torkeaPahoinpitely ] = await getCrimeData()
+      console.log(pahoinpitely, torkeaPahoinpitely) 
+      
+      /* Select document element and plot data. */
+      const ctx1 = document.getElementById("chart1").getContext("2d")
+      const myChart1 = new Chart(ctx1, {
+        type: 'bar',
+        data: {
+            labels: pahoinpitely.year,
+            datasets: [{
+                label: "Miespuolinen uhri",
+                data: pahoinpitely.victimMale,
+                borderWidth: 0,
+                backgroundColor: "rgb(66, 182, 245)"
+            }, {
+                label: "Naispuolinen uhri",
+                data: pahoinpitely.victimFemale,
+                borderWidth: 0,
+                backgroundColor: "rgb(255, 155, 255)"
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+              title: {
+                display: true,
+                text: "Pahoinpitelyrikosten uhrit"
+              }
+            }
+        }
+      })
+
+      /* Same thing, diffrent data. */
+      const ctx2 = document.getElementById("chart2").getContext("2d")
+      const myChart2 = new Chart(ctx2, {
+        type: 'bar',
+        data: {
+            labels: torkeaPahoinpitely.year,
+            datasets: [{
+                label: "Miespuolinen uhri",
+                data: torkeaPahoinpitely.victimMale,
+                borderWidth: 0,
+                backgroundColor: "rgb(66, 182, 245)"
+            }, {
+                label: "Naispuolinen uhri",
+                data: torkeaPahoinpitely.victimFemale,
+                borderWidth: 0,
+                backgroundColor: "rgb(255, 155, 255)"
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+              title: {
+                display: true,
+                text: "Törkeiden pahoinpitelyrikosten uhrit"
+              }
+            }
+        }
+      })
+    }
+  
+    /* Get data from Tilastokeskus. */
+    const getCrimeData = async () => {
+      const response = await fetch("005_11cn_2020_20220530-133241.csv")
+      const data = await response.text()
+  
+      /* Split table by row and remove header. */
+      let table = data.split("\n").slice(1)
+
+      /* Create two objects for data. */
+      const pahoinpitely = {
+        crime: [],
+        year: [],
+        victimMale: [],
+        victimFemale: [],
+      }
+
+      const torkeaPahoinpitely = {
+        crime: [],
+        year: [],
+        victimMale: [],
+        victimFemale: [], 
+      }
+
+      /* Iterate rows in table. */
+      table.forEach(row => {
+        const columns = row.split(";")
+        const crime = columns[1].slice(1, -1)
+        const year = parseInt(columns[3].slice(1, 5))
+        const victimMale = parseInt(columns[5])
+        const victimFemale = parseInt(columns[6])
+
+        /* Sort data into objects. */
+        if (crime === "Pahoinpitely 21:5") {
+          pahoinpitely.crime.push(crime)
+          pahoinpitely.year.push(year)
+          pahoinpitely.victimMale.push(victimMale)
+          pahoinpitely.victimFemale.push(victimFemale)
+        } else if (crime == "Törkeä pahoinpitely 21:6") {
+          torkeaPahoinpitely.crime.push(crime)
+          torkeaPahoinpitely.year.push(year)
+          torkeaPahoinpitely.victimMale.push(victimMale)
+          torkeaPahoinpitely.victimFemale.push(victimFemale)  
+        }
+      })
+
+      /* Return objects. */
+      return [pahoinpitely, torkeaPahoinpitely]
+    
+    }
+
+    chartData()
+
+  </script>
+  
+</body>
+</html>

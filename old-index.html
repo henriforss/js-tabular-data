@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>JS tabular data</title>
+</head>
+<body>
+  <!-- Data from "https://data.giss.nasa.gov/gistemp/". -->
+
+  <script>
+
+    /* Call function. */
+    // getData()
+
+    /* Async function to get data. */
+    async function getData() {
+      const response = await fetch("ZonAnn.Ts+dSST.csv")
+      const data = await response.text()
+
+      /* Parse txt-file to csv-file. Split file by row.*/
+      let table = data.split("\n")
+      /* Remove first-line (header). */
+      table = table.slice(1)
+      /* Use forEach to iterate rows insted of for-loop. */
+      table.forEach(row => {
+        const columns = row.split(",")
+        const year = columns[0]
+        const temp = columns[1]
+        console.log(year, temp)
+      })
+    }
+    
+  </script>
+
+  <script>
+
+    /* Get data from Tilastokeskus. */
+    const getCrimeData = async () => {
+      const response = await fetch("005_11cn_2020_20220530-133241.csv")
+      const data = await response.text()
+  
+      /* Split table by row and remove header. */
+      let table = data.split("\n").slice(1)
+
+      /* Create two objects for data. */
+      const pahoinpitely = {
+        year: [],
+        victimMale: [],
+        victimFemale: [],
+      }
+
+      const torkeaPahoinpitely = {
+        year: [],
+        victimMale: [],
+        victimFemale: [], 
+      }
+
+      /* Iterate rows in table. */
+      table.forEach(row => {
+        const columns = row.split(";")
+        const crime = columns[1].slice(1, -1)
+        const year = parseInt(columns[3].slice(1, 5))
+        const victimMale = parseInt(columns[5])
+        const victimFemale = parseInt(columns[6])
+
+        /* Sort data into objects. */
+        if (crime === "Pahoinpitely 21:5") {
+          pahoinpitely.year.push(year)
+          pahoinpitely.victimMale.push(victimMale)
+          pahoinpitely.victimFemale.push(victimFemale)
+        } else if (crime == "Törkeä pahoinpitely 21:6") {
+          torkeaPahoinpitely.year.push(year)
+          torkeaPahoinpitely.victimMale.push(victimMale)
+          torkeaPahoinpitely.victimFemale.push(victimFemale)  
+        }
+      })
+
+      console.log(pahoinpitely)
+      console.log(torkeaPahoinpitely)
+      
+    }
+  
+    getCrimeData()
+
+  </script>
+  
+</body>
+</html>

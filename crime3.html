@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Eräiden rikosten uhrit</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <div class="container" style="max-width: 600px; padding-bottom: 100px;">
+    <canvas id="chart0"></canvas>
+  </div>
+  <div class="container" style="max-width: 600px; padding-bottom: 100px;">
+    <canvas id="chart1"></canvas>
+  </div>
+
+  <script>
+
+
+    const plotData = async () => {
+      const dataSex = await getData()
+
+      
+      /* Select five biggest categories after data exploration. */
+      const topCrimesMale = ["Pahoinpitely 21:5", "Kiristys 31:3§1",
+      "Törkeä pahoinpitely 21:6", "Ryöstö 31:1§1/1-2",
+      "Törkeä ryöstö 31:2§1/1-4"]
+      
+      const topCrimesFemale = ["Pahoinpitely 21:5", "Kiristys 31:3§1",
+      "Raiskaus 20:1§1-2", "Lapsen seksuaalinen hyväksikäyttö 20:6§1-2",
+      "Vainoaminen 25:7a§"]
+    
+      /* Create objects for top five. */
+      const topFiveMale = {
+        crime: [],
+        victimMale: [],
+        year: [],
+      }
+
+      const topFiveFemale = {
+        crime: [],
+        victimFemale: [],
+        year: [],
+      }
+      
+      /* Iterate dataSex.male object and push data inte top five object. */
+      for (let i = 0; i < dataSex.male.crime.length; i++) {
+        const crime = dataSex.male.crime[i]
+        const victimMale = dataSex.male.victimMale[i]
+        const year = dataSex.male.year[i]
+        
+        if (topCrimesMale.includes(crime)) {
+          topFiveMale.crime.push(crime)
+          topFiveMale.victimMale.push(victimMale)
+          topFiveMale.year.push(year)
+        }
+      }
+
+      /* Iterate dataSex.female object and push data inte top five object. */
+      for (let i = 0; i < dataSex.female.crime.length; i++) {
+        const crime = dataSex.female.crime[i]
+        const victimFemale = dataSex.female.victimFemale[i]
+        const year = dataSex.female.year[i]
+        
+        if (topCrimesFemale.includes(crime)) {
+          topFiveFemale.crime.push(crime)
+          topFiveFemale.victimFemale.push(victimFemale)
+          topFiveFemale.year.push(year)
+        }
+      }
+      
+      /* Select document element and plot data. */
+      const ctx0 = document.getElementById("chart0").getContext("2d")
+      const myChart0 = new Chart(ctx0, {
+        type: 'doughnut',
+        data: {
+          labels: topFiveMale.crime,
+          datasets: [{
+            data: topFiveMale.victimMale,
+            borderWidth: 0,
+            backgroundColor: [
+              "#56B1E5",
+              "#73D6EC",
+              "#91F2F1",
+              "#AFF6E9",
+              "#CFFBEA",
+            ]
+          }]
+        },
+        options: {
+          plugins: {
+            title: {
+              display: true,
+              text: "Miespuolisten uhrien kohtaamat rikokset (viisi suurinta)"
+            }
+          }
+        }
+      })
+      
+      /* Select document element and plot data. */
+      const ctx1 = document.getElementById("chart1").getContext("2d")
+      const myChart1 = new Chart(ctx1, {
+        type: 'doughnut',
+        data: {
+          labels: topFiveFemale.crime,
+          datasets: [{
+            data: topFiveFemale.victimFemale,
+            borderWidth: 0,
+            backgroundColor: [
+              "#E94477",
+              "#EF66AA",
+              "#F588D2",
+              "#F9AAEF",
+              "#F8CCFC",
+            ]
+          }]
+        },
+        options: {
+          plugins: {
+            title: {
+              display: true,
+              text: "Naispuoliseten uhrien kohtaamat rikokset (viisi suurinta)"
+            }
+          }
+        }
+      })
+      
+      
+    }
+
+
+
+    const getData = async () => {
+      const response = await fetch("crime-data-type-2.csv")
+      const data = await response.text()
+      const table = data.split("\n").slice(1)
+
+      const dataSex = {
+        male: {
+          year: [],
+          crime: [],
+          victimMale: [],
+        },
+        female: {
+          year: [],
+          crime: [],
+          victimFemale: [],
+        },
+      }
+
+      table.forEach(row => {
+        const column = row.split(";")
+        const crime = column[1].slice(1, -1)
+        const year = parseInt(column[3].slice(1, -1))
+        const victimMale = parseInt(column[5])
+        const victimFemale = parseInt(column[6])        
+        
+        if (year === 2020 && crime !== "YHTEENSÄ") {
+            dataSex.male.year.push(year)
+            dataSex.male.crime.push(crime)
+            dataSex.male.victimMale.push(victimMale)
+            dataSex.female.year.push(year)
+            dataSex.female.crime.push(crime)
+            dataSex.female.victimFemale.push(victimFemale)
+          }   
+          
+        })    
+        
+        return dataSex
+
+      }
+    
+    plotData()
+
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

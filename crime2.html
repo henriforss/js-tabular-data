@@ -61,7 +61,8 @@
                 display: true,
                 text: "Eräiden rikosten uhrit iän mukaan"
               }
-            }
+            },
+            indexAxis: "y",
         }
       })
 
@@ -75,12 +76,12 @@
                 label: "Miespuolinen uhri",
                 data: dataRegionSelected.victimMale,
                 borderWidth: 0,
-                backgroundColor: "rgb(66, 182, 245)"
+                backgroundColor: "rgb(66, 182, 245)",
             }, {
                 label: "Naispuolinen uhri",
                 data: dataRegionSelected.victimFemale,
                 borderWidth: 0,
-                backgroundColor: "rgb(255, 155, 255)"
+                backgroundColor: "rgb(255, 155, 255)",
             }]
         },
         options: {

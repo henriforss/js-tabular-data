@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Eräiden rikosten uhrit</title>
+    <!-- Link chart.js. -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  
+  <div class="container" style="max-width: 600px; padding-bottom: 100px;">
+    <canvas id="chart0"></canvas>
+  </div>
+  <div class="container" style="max-width: 600px; padding-bottom: 100px">
+    <canvas id="chart1"></canvas>
+  </div>
+  <div class="container" style="max-width: 600px; padding-bottom: 100px">
+    <canvas id="chart2"></canvas>
+  </div>
+
+  <script>
+
+    /* Plot data. */
+    const plotData = async () => {
+      /* Get data. */
+      const [dataAge, dataRegion, dataRegionSelected] = await getData()
+
+      /* Remove Uusimaa data from dataRegion. */
+      dataRegion.region = dataRegion.region.slice(1)
+      dataRegion.victimMale = dataRegion.victimMale.slice(1)
+      dataRegion.victimFemale = dataRegion.victimFemale.slice(1)
+
+      /* Select document element and plot data. */
+      const ctx0 = document.getElementById("chart0").getContext("2d")
+      const myChart0 = new Chart(ctx0, {
+        type: 'bar',
+        data: {
+            labels: dataAge.age,
+            datasets: [{
+                label: "Miespuolinen uhri",
+                data: dataAge.victimMale,
+                borderWidth: 0,
+                backgroundColor: "rgb(66, 182, 245)"
+            }, {
+                label: "Naispuolinen uhri",
+                data: dataAge.victimFemale,
+                borderWidth: 0,
+                backgroundColor: "rgb(255, 155, 255)"
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+              title: {
+                display: true,
+                text: "Eräiden rikosten uhrit iän mukaan"
+              }
+            }
+        }
+      })
+
+      /* Select document element and plot data. */
+      const ctx1 = document.getElementById("chart1").getContext("2d")
+      const myChart1 = new Chart(ctx1, {
+        type: 'bar',
+        data: {
+            labels: dataRegionSelected.region,
+            datasets: [{
+                label: "Miespuolinen uhri",
+                data: dataRegionSelected.victimMale,
+                borderWidth: 0,
+                backgroundColor: "rgb(66, 182, 245)"
+            }, {
+                label: "Naispuolinen uhri",
+                data: dataRegionSelected.victimFemale,
+                borderWidth: 0,
+                backgroundColor: "rgb(255, 155, 255)"
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+              title: {
+                display: true,
+                text: "Eräiden rikosten uhrit maakunnan mukaan (Uusimaa ja muut maakunnat)"
+              }
+            },
+            indexAxis: "y",
+        }
+      })
+
+      /* Select document element and plot data. */
+      const ctx2 = document.getElementById("chart2").getContext("2d")
+      const myChart2 = new Chart(ctx2, {
+        type: 'bar',
+        data: {
+            labels: dataRegion.region,
+            datasets: [{
+                label: "Miespuolinen uhri",
+                data: dataRegion.victimMale,
+                borderWidth: 0,
+                backgroundColor: "rgb(66, 182, 245)"
+            }, {
+                label: "Naispuolinen uhri",
+                data: dataRegion.victimFemale,
+                borderWidth: 0,
+                backgroundColor: "rgb(255, 155, 255)"
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+              title: {
+                display: true,
+                text: "Eräiden rikosten uhrit maakunnan mukaan (Uusimaa poistettu)"
+              }
+            },
+            indexAxis: "y",
+        }
+      })      
+    }
+
+    /* Get data. */
+    const getData = async () => {
+      /* Fetch files. */
+      const responseAge = await fetch("crime-data-age.csv")
+      const dataAge = await responseAge.text()
+      const tableAge = dataAge.split("\n").slice(1)
+
+      const responseRegion = await fetch("crime-data-region.csv")
+      const dataRegion = await responseRegion.text()
+      const tableRegion = dataRegion.split("\n").slice(1)
+
+      /* Create objects. */
+      const ageData = {
+        age: [],
+        victimMale: [],
+        victimFemale: [],
+      }
+
+      const regionData = {
+        region: [],
+        victimMale: [],
+        victimFemale: [],
+      }
+      
+      const selectedRegionData = {
+        region: ["Uusimaa", "Muut maakunnat"],
+        victimMale: [],
+        victimFemale: [],
+      }
+
+      /* Iterate tables and push data into objects. */
+      tableAge.forEach(row => {
+        const column = row.split(";")
+        const age = column[2].slice(1, -1)
+        const victimMale = parseInt(column[5])
+        const victimFemale = parseInt(column[6])
+
+        ageData.age.push(age)
+        ageData.victimMale.push(victimMale)
+        ageData.victimFemale.push(victimFemale)
+      })
+
+      tableRegion.forEach(row => {
+        const column = row.split(";")
+        const region = column[0].slice(1, -1)
+        const victimMale = parseInt(column[5])
+        const victimFemale = parseInt(column[6])
+
+        regionData.region.push(region)
+        regionData.victimMale.push(victimMale)
+        regionData.victimFemale.push(victimFemale)
+      })
+
+      let uusimaaMale = 0
+      let uusimaaFemale = 0
+      let notUusimaaMale = 0
+      let notUusimaaFemale = 0
+
+      tableRegion.forEach(row => {
+        const column = row.split(";")
+        const region = column[0].slice(1, -1)
+        const victimMale = parseInt(column[5])
+        const victimFemale = parseInt(column[6])
+
+        if (region === "MK01 Uusimaa") {
+          uusimaaMale += victimMale
+          uusimaaFemale += victimFemale
+        } else {
+          notUusimaaMale += victimMale
+          notUusimaaFemale += victimFemale
+        }
+      })
+
+      /* Push data into object. */
+      selectedRegionData.victimMale.push(uusimaaMale, notUusimaaMale)
+      selectedRegionData.victimFemale.push(uusimaaFemale, notUusimaaFemale)
+
+      /* Return populated objects. */
+      return [ageData, regionData, selectedRegionData]
+    }
+
+    /* Call function. */
+    plotData()
+    // getData()
+
+  </script>
+
+</body>
+</html>

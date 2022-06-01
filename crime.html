@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>JS tabular data</title>
+    <title>Eräiden rikosten uhrit</title>
     <!-- Link chart.js. -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -12,8 +12,29 @@
   <!-- Creat div element for canvases. -->
   <div class="container" style="max-width: 600px">
     <!-- Create canvas-elements. -->
+    <canvas id="chart0"></canvas>
     <canvas id="chart1"></canvas>
     <canvas id="chart2"></canvas>
+    <canvas id="chart3"></canvas>
+    <canvas id="chart4"></canvas>
+    <canvas id="chart5"></canvas>
+    <canvas id="chart6"></canvas>
+    <canvas id="chart7"></canvas>
+    <canvas id="chart8"></canvas>
+    <canvas id="chart9"></canvas>
+    <canvas id="chart10"></canvas>
+    <canvas id="chart11"></canvas>
+    <canvas id="chart12"></canvas>
+    <canvas id="chart13"></canvas>
+    <canvas id="chart14"></canvas>
+    <canvas id="chart15"></canvas>
+    <canvas id="chart16"></canvas>
+    <canvas id="chart17"></canvas>
+    <canvas id="chart18"></canvas>
+    <canvas id="chart19"></canvas>
+    <canvas id="chart20"></canvas>
+    <canvas id="chart21"></canvas>
+    <canvas id="chart22"></canvas>
   </div>
 
   <script>
@@ -21,12 +42,412 @@
     /* Create function for plotting data. */
     const chartData = async () => {
       /* Get data and destructure. */
-      const [ pahoinpitely, torkeaPahoinpitely ] = await getCrimeData()
-      console.log(pahoinpitely, torkeaPahoinpitely) 
+      const [yhteensa, raiskaus, torkeaRaiskaus, lapsSeksHyvaks,
+        torkLapsSeksHyvaks, torkeaLapsenraiskaus, seksuaalinenAhdistelu,
+        seksHyvaks, paritus, torkeaParitus, taponYritys, murhanYritys,
+        pahoinpitely, torkeaPahoinpitely, ryosto, torkeaRyosto,
+        kiristys, torkeaKiristys, vapaudenriisto, torkeaVapaudenriisto,
+        vainoaminen, ihmiskauppa, torkeaIhmiskauppa, rikokset2020] = await getCrimeData()
       
+      /* Select document element and plot data. */
+      const ctx0 = document.getElementById("chart0").getContext("2d")
+      const myChart0 = new Chart(ctx0, {
+        type: 'bar',
+        data: {
+            labels: yhteensa.year,
+            datasets: [{
+                label: "Miespuolinen uhri",
+                data: yhteensa.victimMale,
+                borderWidth: 0,
+                backgroundColor: "rgb(66, 182, 245)"
+            }, {
+                label: "Naispuolinen uhri",
+                data: yhteensa.victimFemale,
+                borderWidth: 0,
+                backgroundColor: "rgb(255, 155, 255)"
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+              title: {
+                display: true,
+                text: "Eräiden rikosten uhrit yhteensä"
+              }
+            }
+        }
+      })
+
       /* Select document element and plot data. */
       const ctx1 = document.getElementById("chart1").getContext("2d")
       const myChart1 = new Chart(ctx1, {
+        type: 'bar',
+        data: {
+            labels: raiskaus.year,
+            datasets: [{
+                label: "Miespuolinen uhri",
+                data: raiskaus.victimMale,
+                borderWidth: 0,
+                backgroundColor: "rgb(66, 182, 245)"
+            }, {
+                label: "Naispuolinen uhri",
+                data: raiskaus.victimFemale,
+                borderWidth: 0,
+                backgroundColor: "rgb(255, 155, 255)"
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+              title: {
+                display: true,
+                text: "Raiskauksen uhrit"
+              }
+            }
+        }
+      })
+
+      /* Same thing, diffrent data. */
+      const ctx2 = document.getElementById("chart2").getContext("2d")
+      const myChart2 = new Chart(ctx2, {
+        type: 'bar',
+        data: {
+            labels: torkeaRaiskaus.year,
+            datasets: [{
+                label: "Miespuolinen uhri",
+                data: torkeaRaiskaus.victimMale,
+                borderWidth: 0,
+                backgroundColor: "rgb(66, 182, 245)"
+            }, {
+                label: "Naispuolinen uhri",
+                data: torkeaRaiskaus.victimFemale,
+                borderWidth: 0,
+                backgroundColor: "rgb(255, 155, 255)"
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+              title: {
+                display: true,
+                text: "Törkeän raiskauksen uhrit"
+              }
+            }
+        }
+      })
+
+      /* Same thing, diffrent data. */
+      const ctx3 = document.getElementById("chart3").getContext("2d")
+      const myChart3 = new Chart(ctx3, {
+        type: 'bar',
+        data: {
+            labels: lapsSeksHyvaks.year,
+            datasets: [{
+                label: "Miespuolinen uhri",
+                data: lapsSeksHyvaks.victimMale,
+                borderWidth: 0,
+                backgroundColor: "rgb(66, 182, 245)"
+            }, {
+                label: "Naispuolinen uhri",
+                data: lapsSeksHyvaks.victimFemale,
+                borderWidth: 0,
+                backgroundColor: "rgb(255, 155, 255)"
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+              title: {
+                display: true,
+                text: "Lapsen seksuaalisen hyvaksikäytön uhrit"
+              }
+            }
+        }
+      })
+
+      /* Same thing, diffrent data. */
+      const ctx4 = document.getElementById("chart4").getContext("2d")
+      const myChart4 = new Chart(ctx4, {
+        type: 'bar',
+        data: {
+            labels: torkLapsSeksHyvaks.year,
+            datasets: [{
+                label: "Miespuolinen uhri",
+                data: torkLapsSeksHyvaks.victimMale,
+                borderWidth: 0,
+                backgroundColor: "rgb(66, 182, 245)"
+            }, {
+                label: "Naispuolinen uhri",
+                data: torkLapsSeksHyvaks.victimFemale,
+                borderWidth: 0,
+                backgroundColor: "rgb(255, 155, 255)"
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+              title: {
+                display: true,
+                text: "Törkeän lapsen seksuaalisen hyväksikäytön uhrit"
+              }
+            }
+        }
+      })
+
+      /* Same thing, diffrent data. */
+      const ctx5 = document.getElementById("chart5").getContext("2d")
+      const myChart5 = new Chart(ctx5, {
+        type: 'bar',
+        data: {
+            labels: torkeaLapsenraiskaus.year,
+            datasets: [{
+                label: "Miespuolinen uhri",
+                data: torkeaLapsenraiskaus.victimMale,
+                borderWidth: 0,
+                backgroundColor: "rgb(66, 182, 245)"
+            }, {
+                label: "Naispuolinen uhri",
+                data: torkeaLapsenraiskaus.victimFemale,
+                borderWidth: 0,
+                backgroundColor: "rgb(255, 155, 255)"
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+              title: {
+                display: true,
+                text: "Törkeän lapsenraiskauksen uhrit"
+              }
+            }
+        }
+      })
+
+      /* Same thing, diffrent data. */
+      const ctx6 = document.getElementById("chart6").getContext("2d")
+      const myChart6 = new Chart(ctx6, {
+        type: 'bar',
+        data: {
+            labels: seksuaalinenAhdistelu.year,
+            datasets: [{
+                label: "Miespuolinen uhri",
+                data: seksuaalinenAhdistelu.victimMale,
+                borderWidth: 0,
+                backgroundColor: "rgb(66, 182, 245)"
+            }, {
+                label: "Naispuolinen uhri",
+                data: seksuaalinenAhdistelu.victimFemale,
+                borderWidth: 0,
+                backgroundColor: "rgb(255, 155, 255)"
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+              title: {
+                display: true,
+                text: "Seksuaalisen ahdistelun uhrit"
+              }
+            }
+        }
+      })
+
+      /* Same thing, diffrent data. */
+      const ctx7 = document.getElementById("chart7").getContext("2d")
+      const myChart7 = new Chart(ctx7, {
+        type: 'bar',
+        data: {
+            labels: seksHyvaks.year,
+            datasets: [{
+                label: "Miespuolinen uhri",
+                data: seksHyvaks.victimMale,
+                borderWidth: 0,
+                backgroundColor: "rgb(66, 182, 245)"
+            }, {
+                label: "Naispuolinen uhri",
+                data: seksHyvaks.victimFemale,
+                borderWidth: 0,
+                backgroundColor: "rgb(255, 155, 255)"
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+              title: {
+                display: true,
+                text: "Seksuaalisen hyvaksikäytön uhrit"
+              }
+            }
+        }
+      })
+
+      /* Same thing, diffrent data. */
+      const ctx8 = document.getElementById("chart8").getContext("2d")
+      const myChart8 = new Chart(ctx8, {
+        type: 'bar',
+        data: {
+            labels: paritus.year,
+            datasets: [{
+                label: "Miespuolinen uhri",
+                data: paritus.victimMale,
+                borderWidth: 0,
+                backgroundColor: "rgb(66, 182, 245)"
+            }, {
+                label: "Naispuolinen uhri",
+                data: paritus.victimFemale,
+                borderWidth: 0,
+                backgroundColor: "rgb(255, 155, 255)"
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+              title: {
+                display: true,
+                text: "Parituksen uhrit"
+              }
+            }
+        }
+      })
+
+      /* Same thing, diffrent data. */
+      const ctx9 = document.getElementById("chart9").getContext("2d")
+      const myChart9 = new Chart(ctx9, {
+        type: 'bar',
+        data: {
+            labels: torkeaParitus.year,
+            datasets: [{
+                label: "Miespuolinen uhri",
+                data: torkeaParitus.victimMale,
+                borderWidth: 0,
+                backgroundColor: "rgb(66, 182, 245)"
+            }, {
+                label: "Naispuolinen uhri",
+                data: torkeaParitus.victimFemale,
+                borderWidth: 0,
+                backgroundColor: "rgb(255, 155, 255)"
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+              title: {
+                display: true,
+                text: "Törkeän parituksen uhrit"
+              }
+            }
+        }
+      })
+
+      /* Same thing, diffrent data. */
+      const ctx10 = document.getElementById("chart10").getContext("2d")
+      const myChart10 = new Chart(ctx10, {
+        type: 'bar',
+        data: {
+            labels: taponYritys.year,
+            datasets: [{
+                label: "Miespuolinen uhri",
+                data: taponYritys.victimMale,
+                borderWidth: 0,
+                backgroundColor: "rgb(66, 182, 245)"
+            }, {
+                label: "Naispuolinen uhri",
+                data: taponYritys.victimFemale,
+                borderWidth: 0,
+                backgroundColor: "rgb(255, 155, 255)"
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+              title: {
+                display: true,
+                text: "Tapon yrityksen uhrit"
+              }
+            }
+        }
+      })
+
+      /* Same thing, diffrent data. */
+      const ctx11 = document.getElementById("chart11").getContext("2d")
+      const myChart11 = new Chart(ctx11, {
+        type: 'bar',
+        data: {
+            labels: murhanYritys.year,
+            datasets: [{
+                label: "Miespuolinen uhri",
+                data: murhanYritys.victimMale,
+                borderWidth: 0,
+                backgroundColor: "rgb(66, 182, 245)"
+            }, {
+                label: "Naispuolinen uhri",
+                data: murhanYritys.victimFemale,
+                borderWidth: 0,
+                backgroundColor: "rgb(255, 155, 255)"
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+              title: {
+                display: true,
+                text: "Murhan yrityksen uhrit"
+              }
+            }
+        }
+      })
+
+      /* Same thing, diffrent data. */
+      const ctx12 = document.getElementById("chart12").getContext("2d")
+      const myChart12 = new Chart(ctx12, {
         type: 'bar',
         data: {
             labels: pahoinpitely.year,
@@ -51,15 +472,15 @@
             plugins: {
               title: {
                 display: true,
-                text: "Pahoinpitelyrikosten uhrit"
+                text: "Pahoinpitelyn uhrit"
               }
             }
         }
       })
 
       /* Same thing, diffrent data. */
-      const ctx2 = document.getElementById("chart2").getContext("2d")
-      const myChart2 = new Chart(ctx2, {
+      const ctx13 = document.getElementById("chart13").getContext("2d")
+      const myChart13 = new Chart(ctx13, {
         type: 'bar',
         data: {
             labels: torkeaPahoinpitely.year,
@@ -84,7 +505,304 @@
             plugins: {
               title: {
                 display: true,
-                text: "Törkeiden pahoinpitelyrikosten uhrit"
+                text: "Törkeän pahoinpitelyn uhrit"
+              }
+            }
+        }
+      })
+
+      /* Same thing, diffrent data. */
+      const ctx14 = document.getElementById("chart14").getContext("2d")
+      const myChart14 = new Chart(ctx14, {
+        type: 'bar',
+        data: {
+            labels: ryosto.year,
+            datasets: [{
+                label: "Miespuolinen uhri",
+                data: ryosto.victimMale,
+                borderWidth: 0,
+                backgroundColor: "rgb(66, 182, 245)"
+            }, {
+                label: "Naispuolinen uhri",
+                data: ryosto.victimFemale,
+                borderWidth: 0,
+                backgroundColor: "rgb(255, 155, 255)"
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+              title: {
+                display: true,
+                text: "Ryöstön uhrit"
+              }
+            }
+        }
+      })
+
+      /* Same thing, diffrent data. */
+      const ctx15 = document.getElementById("chart15").getContext("2d")
+      const myChart15 = new Chart(ctx15, {
+        type: 'bar',
+        data: {
+            labels: torkeaRyosto.year,
+            datasets: [{
+                label: "Miespuolinen uhri",
+                data: torkeaRyosto.victimMale,
+                borderWidth: 0,
+                backgroundColor: "rgb(66, 182, 245)"
+            }, {
+                label: "Naispuolinen uhri",
+                data: torkeaRyosto.victimFemale,
+                borderWidth: 0,
+                backgroundColor: "rgb(255, 155, 255)"
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+              title: {
+                display: true,
+                text: "Törkeän ryöstön uhrit"
+              }
+            }
+        }
+      })
+
+      /* Same thing, diffrent data. */
+      const ctx16 = document.getElementById("chart16").getContext("2d")
+      const myChart16 = new Chart(ctx16, {
+        type: 'bar',
+        data: {
+            labels: kiristys.year,
+            datasets: [{
+                label: "Miespuolinen uhri",
+                data: kiristys.victimMale,
+                borderWidth: 0,
+                backgroundColor: "rgb(66, 182, 245)"
+            }, {
+                label: "Naispuolinen uhri",
+                data: kiristys.victimFemale,
+                borderWidth: 0,
+                backgroundColor: "rgb(255, 155, 255)"
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+              title: {
+                display: true,
+                text: "Kiristyksen uhrit"
+              }
+            }
+        }
+      })
+
+      /* Same thing, diffrent data. */
+      const ctx17 = document.getElementById("chart17").getContext("2d")
+      const myChart17 = new Chart(ctx17, {
+        type: 'bar',
+        data: {
+            labels: torkeaKiristys.year,
+            datasets: [{
+                label: "Miespuolinen uhri",
+                data: torkeaKiristys.victimMale,
+                borderWidth: 0,
+                backgroundColor: "rgb(66, 182, 245)"
+            }, {
+                label: "Naispuolinen uhri",
+                data: torkeaKiristys.victimFemale,
+                borderWidth: 0,
+                backgroundColor: "rgb(255, 155, 255)"
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+              title: {
+                display: true,
+                text: "Törkeän kirityksen uhrit"
+              }
+            }
+        }
+      })
+
+      /* Same thing, diffrent data. */
+      const ctx18 = document.getElementById("chart18").getContext("2d")
+      const myChart18 = new Chart(ctx18, {
+        type: 'bar',
+        data: {
+            labels: vapaudenriisto.year,
+            datasets: [{
+                label: "Miespuolinen uhri",
+                data: vapaudenriisto.victimMale,
+                borderWidth: 0,
+                backgroundColor: "rgb(66, 182, 245)"
+            }, {
+                label: "Naispuolinen uhri",
+                data: vapaudenriisto.victimFemale,
+                borderWidth: 0,
+                backgroundColor: "rgb(255, 155, 255)"
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+              title: {
+                display: true,
+                text: "Vapaudenriiston uhrit"
+              }
+            }
+        }
+      })
+
+      /* Same thing, diffrent data. */
+      const ctx19 = document.getElementById("chart19").getContext("2d")
+      const myChart19 = new Chart(ctx19, {
+        type: 'bar',
+        data: {
+            labels: torkeaVapaudenriisto.year,
+            datasets: [{
+                label: "Miespuolinen uhri",
+                data: torkeaVapaudenriisto.victimMale,
+                borderWidth: 0,
+                backgroundColor: "rgb(66, 182, 245)"
+            }, {
+                label: "Naispuolinen uhri",
+                data: torkeaVapaudenriisto.victimFemale,
+                borderWidth: 0,
+                backgroundColor: "rgb(255, 155, 255)"
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+              title: {
+                display: true,
+                text: "Törkeän vapaudenriiston uhrit"
+              }
+            }
+        }
+      })
+
+      /* Same thing, diffrent data. */
+      const ctx20 = document.getElementById("chart20").getContext("2d")
+      const myChart20 = new Chart(ctx20, {
+        type: 'bar',
+        data: {
+            labels: vainoaminen.year,
+            datasets: [{
+                label: "Miespuolinen uhri",
+                data: vainoaminen.victimMale,
+                borderWidth: 0,
+                backgroundColor: "rgb(66, 182, 245)"
+            }, {
+                label: "Naispuolinen uhri",
+                data: vainoaminen.victimFemale,
+                borderWidth: 0,
+                backgroundColor: "rgb(255, 155, 255)"
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+              title: {
+                display: true,
+                text: "Vainoamisen uhrit"
+              }
+            }
+        }
+      })
+
+      /* Same thing, diffrent data. */
+      const ctx21 = document.getElementById("chart21").getContext("2d")
+      const myChart21 = new Chart(ctx21, {
+        type: 'bar',
+        data: {
+            labels: ihmiskauppa.year,
+            datasets: [{
+                label: "Miespuolinen uhri",
+                data: ihmiskauppa.victimMale,
+                borderWidth: 0,
+                backgroundColor: "rgb(66, 182, 245)"
+            }, {
+                label: "Naispuolinen uhri",
+                data: ihmiskauppa.victimFemale,
+                borderWidth: 0,
+                backgroundColor: "rgb(255, 155, 255)"
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+              title: {
+                display: true,
+                text: "Ihmiskaupan uhrit"
+              }
+            }
+        }
+      })
+
+      /* Same thing, diffrent data. */
+      const ctx22 = document.getElementById("chart22").getContext("2d")
+      const myChart22 = new Chart(ctx22, {
+        type: 'bar',
+        data: {
+            labels: torkeaIhmiskauppa.year,
+            datasets: [{
+                label: "Miespuolinen uhri",
+                data: torkeaIhmiskauppa.victimMale,
+                borderWidth: 0,
+                backgroundColor: "rgb(66, 182, 245)"
+            }, {
+                label: "Naispuolinen uhri",
+                data: torkeaIhmiskauppa.victimFemale,
+                borderWidth: 0,
+                backgroundColor: "rgb(255, 155, 255)"
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+              title: {
+                display: true,
+                text: "Törkeän ihmiskaupan uhrit"
               }
             }
         }
@@ -93,13 +811,97 @@
   
     /* Get data from Tilastokeskus. */
     const getCrimeData = async () => {
-      const response = await fetch("005_11cn_2020_20220530-133241.csv")
+      const response = await fetch("crime-data-type-2.csv")
       const data = await response.text()
-  
+      
       /* Split table by row and remove header. */
       let table = data.split("\n").slice(1)
 
-      /* Create two objects for data. */
+      /* Create objects for data. */
+      const yhteensa = {
+        crime: [],
+        year: [],
+        victimMale: [],
+        victimFemale: [], 
+      }
+
+      const raiskaus = {
+        crime: [],
+        year: [],
+        victimMale: [],
+        victimFemale: [], 
+      }
+
+      const torkeaRaiskaus = {
+        crime: [],
+        year: [],
+        victimMale: [],
+        victimFemale: [], 
+      }
+
+      const lapsSeksHyvaks = {
+        crime: [],
+        year: [],
+        victimMale: [],
+        victimFemale: [], 
+      }
+
+      const torkLapsSeksHyvaks = {
+        crime: [],
+        year: [],
+        victimMale: [],
+        victimFemale: [], 
+      }
+
+      const torkeaLapsenraiskaus = {
+        crime: [],
+        year: [],
+        victimMale: [],
+        victimFemale: [], 
+      }
+
+      const seksuaalinenAhdistelu = {
+        crime: [],
+        year: [],
+        victimMale: [],
+        victimFemale: [], 
+      }
+
+      const seksHyvaks = {
+        crime: [],
+        year: [],
+        victimMale: [],
+        victimFemale: [], 
+      }
+
+      const paritus = {
+        crime: [],
+        year: [],
+        victimMale: [],
+        victimFemale: [], 
+      }
+
+      const torkeaParitus = {
+        crime: [],
+        year: [],
+        victimMale: [],
+        victimFemale: [], 
+      }
+
+      const taponYritys = {
+        crime: [],
+        year: [],
+        victimMale: [],
+        victimFemale: [], 
+      }
+
+      const murhanYritys = {
+        crime: [],
+        year: [],
+        victimMale: [],
+        victimFemale: [], 
+      }
+
       const pahoinpitely = {
         crime: [],
         year: [],
@@ -114,6 +916,75 @@
         victimFemale: [], 
       }
 
+      const ryosto = {
+        crime: [],
+        year: [],
+        victimMale: [],
+        victimFemale: [], 
+      }
+
+      const torkeaRyosto = {
+        crime: [],
+        year: [],
+        victimMale: [],
+        victimFemale: [], 
+      }
+
+      const kiristys = {
+        crime: [],
+        year: [],
+        victimMale: [],
+        victimFemale: [], 
+      }
+
+      const torkeaKiristys = {
+        crime: [],
+        year: [],
+        victimMale: [],
+        victimFemale: [], 
+      }
+
+      const vapaudenriisto = {
+        crime: [],
+        year: [],
+        victimMale: [],
+        victimFemale: [], 
+      }
+
+      const torkeaVapaudenriisto = {
+        crime: [],
+        year: [],
+        victimMale: [],
+        victimFemale: [], 
+      }
+
+      const vainoaminen = {
+        crime: [],
+        year: [],
+        victimMale: [],
+        victimFemale: [], 
+      }
+
+      const ihmiskauppa = {
+        crime: [],
+        year: [],
+        victimMale: [],
+        victimFemale: [], 
+      }
+
+      const torkeaIhmiskauppa = {
+        crime: [],
+        year: [],
+        victimMale: [],
+        victimFemale: [], 
+      }
+
+      const rikokset2020 = {
+        crime: [],
+        victimMale: [],
+        victimFemale: [],
+      }
+
       /* Iterate rows in table. */
       table.forEach(row => {
         const columns = row.split(";")
@@ -122,8 +993,70 @@
         const victimMale = parseInt(columns[5])
         const victimFemale = parseInt(columns[6])
 
+        console.log(crime)
+
         /* Sort data into objects. */
-        if (crime === "Pahoinpitely 21:5") {
+        if (crime === "YHTEENSÄ") {
+          yhteensa.crime.push(crime)
+          yhteensa.year.push(year)
+          yhteensa.victimMale.push(victimMale)
+          yhteensa.victimFemale.push(victimFemale)
+        } else if (crime === "Raiskaus 20:1§1-2") {
+          raiskaus.crime.push(crime)
+          raiskaus.year.push(year)
+          raiskaus.victimMale.push(victimMale)
+          raiskaus.victimFemale.push(victimFemale)
+        } else if (crime === "Törkeä raiskaus 20:2§1/1-5") {
+          torkeaRaiskaus.crime.push(crime)
+          torkeaRaiskaus.year.push(year)
+          torkeaRaiskaus.victimMale.push(victimMale)
+          torkeaRaiskaus.victimFemale.push(victimFemale)
+        } else if (crime === "Lapsen seksuaalinen hyväksikäyttö 20:6§1-2") {
+          lapsSeksHyvaks.crime.push(crime)
+          lapsSeksHyvaks.year.push(year)
+          lapsSeksHyvaks.victimMale.push(victimMale)
+          lapsSeksHyvaks.victimFemale.push(victimFemale)
+        } else if (crime === "Törkeä lapsen seksuaalinen hyväksikäyttö 20:7§1/1-2") {
+          torkLapsSeksHyvaks.crime.push(crime)
+          torkLapsSeksHyvaks.year.push(year)
+          torkLapsSeksHyvaks.victimMale.push(victimMale)
+          torkLapsSeksHyvaks.victimFemale.push(victimFemale)
+        } else if (crime === "Törkeä lapsenraiskaus 20:7b") {
+          torkeaLapsenraiskaus.crime.push(crime)
+          torkeaLapsenraiskaus.year.push(year)
+          torkeaLapsenraiskaus.victimMale.push(victimMale)
+          torkeaLapsenraiskaus.victimFemale.push(victimFemale)
+        } else if (crime === "Seksuaalinen ahdistelu 20:5a§1") {
+          seksuaalinenAhdistelu.crime.push(crime)
+          seksuaalinenAhdistelu.year.push(year)
+          seksuaalinenAhdistelu.victimMale.push(victimMale)
+          seksuaalinenAhdistelu.victimFemale.push(victimFemale)
+        } else if (crime === "Seksuaalinen hyväksikäyttö 20:5§1/1-4") {
+          seksHyvaks.crime.push(crime)
+          seksHyvaks.year.push(year)
+          seksHyvaks.victimMale.push(victimMale)
+          seksHyvaks.victimFemale.push(victimFemale)
+        } else if (crime === "Paritus 20:9§1/1-5") {
+          paritus.crime.push(crime)
+          paritus.year.push(year)
+          paritus.victimMale.push(victimMale)
+          paritus.victimFemale.push(victimFemale)
+        } else if (crime === "Törkeä paritus 20:9a§1/1-3") {
+          torkeaParitus.crime.push(crime)
+          torkeaParitus.year.push(year)
+          torkeaParitus.victimMale.push(victimMale)
+          torkeaParitus.victimFemale.push(victimFemale)
+        } else if (crime === "Tapon yritys 21:1§2") {
+          taponYritys.crime.push(crime)
+          taponYritys.year.push(year)
+          taponYritys.victimMale.push(victimMale)
+          taponYritys.victimFemale.push(victimFemale)
+        } else if (crime === "Murhan yritys 21:2§2") {
+          murhanYritys.crime.push(crime)
+          murhanYritys.year.push(year)
+          murhanYritys.victimMale.push(victimMale)
+          murhanYritys.victimFemale.push(victimFemale)
+        } else if (crime === "Pahoinpitely 21:5") {
           pahoinpitely.crime.push(crime)
           pahoinpitely.year.push(year)
           pahoinpitely.victimMale.push(victimMale)
@@ -133,12 +1066,67 @@
           torkeaPahoinpitely.year.push(year)
           torkeaPahoinpitely.victimMale.push(victimMale)
           torkeaPahoinpitely.victimFemale.push(victimFemale)  
+        } else if (crime === "Ryöstö 31:1§1/1-2") {
+          ryosto.crime.push(crime)
+          ryosto.year.push(year)
+          ryosto.victimMale.push(victimMale)
+          ryosto.victimFemale.push(victimFemale)
+        } else if (crime === "Törkeä ryöstö 31:2§1/1-4") {
+          torkeaRyosto.crime.push(crime)
+          torkeaRyosto.year.push(year)
+          torkeaRyosto.victimMale.push(victimMale)
+          torkeaRyosto.victimFemale.push(victimFemale)
+        } else if (crime === "Kiristys 31:3§1") {
+          kiristys.crime.push(crime)
+          kiristys.year.push(year)
+          kiristys.victimMale.push(victimMale)
+          kiristys.victimFemale.push(victimFemale)
+        } else if (crime === "Törkeä kiristys 31:4§1/1-4") {
+          torkeaKiristys.crime.push(crime)
+          torkeaKiristys.year.push(year)
+          torkeaKiristys.victimMale.push(victimMale)
+          torkeaKiristys.victimFemale.push(victimFemale)
+        } else if (crime === "Vapaudenriisto 25:1-2§") {
+          vapaudenriisto.crime.push(crime)
+          vapaudenriisto.year.push(year)
+          vapaudenriisto.victimMale.push(victimMale)
+          vapaudenriisto.victimFemale.push(victimFemale)
+        } else if (crime === "Törkeä vapaudenriisto 25:2§1/1-3") {
+          torkeaVapaudenriisto.crime.push(crime)
+          torkeaVapaudenriisto.year.push(year)
+          torkeaVapaudenriisto.victimMale.push(victimMale)
+          torkeaVapaudenriisto.victimFemale.push(victimFemale)
+        } else if (crime === "Vainoaminen 25:7a§") {
+          vainoaminen.crime.push(crime)
+          vainoaminen.year.push(year)
+          vainoaminen.victimMale.push(victimMale)
+          vainoaminen.victimFemale.push(victimFemale)
+        } else if (crime === "Ihmiskauppa 25:3§1/1-4") {
+          ihmiskauppa.crime.push(crime)
+          ihmiskauppa.year.push(year)
+          ihmiskauppa.victimMale.push(victimMale)
+          ihmiskauppa.victimFemale.push(victimFemale)
+        } else if (crime === "Törkeä ihmiskauppa  25:3a§1/1-4") {
+          torkeaIhmiskauppa.crime.push(crime)
+          torkeaIhmiskauppa.year.push(year)
+          torkeaIhmiskauppa.victimMale.push(victimMale)
+          torkeaIhmiskauppa.victimFemale.push(victimFemale)
+        }
+        
+        if (year === 2020) {
+          rikokset2020.crime.push(crime)
+          rikokset2020.victimMale.push(victimMale)
+          rikokset2020.victimFemale.push(victimFemale)
         }
       })
 
       /* Return objects. */
-      return [pahoinpitely, torkeaPahoinpitely]
-    
+      return [yhteensa, raiskaus, torkeaRaiskaus, lapsSeksHyvaks,
+        torkLapsSeksHyvaks, torkeaLapsenraiskaus, seksuaalinenAhdistelu,
+        seksHyvaks, paritus, torkeaParitus, taponYritys, murhanYritys,
+        pahoinpitely, torkeaPahoinpitely, ryosto, torkeaRyosto,
+        kiristys, torkeaKiristys, vapaudenriisto, torkeaVapaudenriisto,
+        vainoaminen, ihmiskauppa, torkeaIhmiskauppa, rikokset2020]
     }
 
     chartData()

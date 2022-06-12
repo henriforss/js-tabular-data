@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>JS tabular data</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
+</head>
+<body>
+  <!-- Data from "https://data.giss.nasa.gov/gistemp/". -->
+
+  <canvas id="chart" width="800" height="400"></canvas>
+
+
+  <script>
+
+    /* Call function. */
+    chartIt()
+
+    /* Create function to chart data. */
+    async function chartIt() {
+      /* Call getData(). */
+      const data = await getData()
+      console.log(data)
+
+      /* Select canvas-alement by id. */
+      const ctx = document.getElementById("chart").getContext("2d")
+
+      /* Chart data. */
+      const myChart = new Chart(ctx, {
+          type: "line",
+          data: {
+              labels: data.xs,
+              datasets: [{
+                  label: "Global average temperature in °C",
+                  data: data.ys,
+                  backgroundColor: "rgba(255, 99, 132, 0.2)",
+                  borderColor: "rgba(255, 99, 132, 1)",
+                  borderWidth: 2,
+                  fill: false,
+              }]
+          },
+          options: {
+            scales: {
+              y: {
+                  ticks: {
+                      callback: function(value, index, ticks) {
+                          return value + "°";
+                      }
+                  }
+              }
+            }
+          }
+      })
+    }
+
+    /* Async function to get data. */
+    async function getData() {
+      /* Create arrays for x- and y-coordinates. */
+      const xs = []
+      const ys = []
+
+      /* Fetch data. */
+      const response = await fetch("ZonAnn.csv")
+      const data = await response.text()
+
+      /* Parse txt-file to csv-file. Split file by row.*/
+      let table = data.split("\n")
+      /* Remove first-line (header). */
+      table = table.slice(1)
+      /* Use forEach to iterate rows insted of for-loop. */
+      table.forEach(row => {
+        const columns = row.split(",")
+        const year = columns[0]
+        xs.push(year)
+        const temp = parseFloat(columns[1])
+        ys.push(temp + 14) // Add 14 degrees, which is the global mean. Original data is difference from mean.
+        console.log(year, temp)
+      })
+      /* Return object with values. */
+      return { xs, ys }
+    }
+    
+  </script>
+
+</body>
+</html>

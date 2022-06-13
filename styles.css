@@ -8,16 +8,31 @@ html {
 }
 
 body {
-  background-color: white;
+  background-color:floralwhite;
   margin: 0;
 }
 
 .next {
-  margin: 0 40%;
-  padding: 10px;
-  border-radius: 25px;
-  background-color: lightgray;
-  text-align: center;
+  width: 0; 
+  height: 0; 
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  border-top: 30px solid lightgray;
+  position: absolute;
+  bottom: 2%;
+  left: 45%
+}
+
+.previous {
+  width: 0; 
+  height: 0; 
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  border-bottom: 30px solid lightgray;
+  position: absolute;
+  top: 2%;
+  margin: 0 auto;
+  left: 45%;
 }
 
 .page {
@@ -27,6 +42,7 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  position: relative;
 }
 
 h1, h2, h3 {
@@ -65,4 +81,9 @@ img {
 a {
   text-decoration: none;
   font-family: sans-serif;
+  color: darkslategray;
+}
+
+.scrollable {
+  overflow: hidden;
 }

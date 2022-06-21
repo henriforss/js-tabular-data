@@ -190,11 +190,11 @@ const chartTopten = async () => {
       plugins: {
         title: {
           display: true,
-          text: "Miespuoliset uhrit"
+          text: "Miespuoliset uhrit (2021)"
         },
         legend: {
           display: true,
-          position: "left",
+          position: "top",
           align: "center",
         }
       }
@@ -228,11 +228,11 @@ const chartTopten = async () => {
       plugins: {
         title: {
           display: true,
-          text: "Naispuoliset uhrit uhrit"
+          text: "Naispuoliset uhrit uhrit (2021)"
         },
         legend: {
           display: true,
-          position: "left",
+          position: "top",
           align: "center",
         }
       }

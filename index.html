@@ -3,11 +3,173 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles2.css">
     <!-- <script src="script.js" defer></script> -->
     <title>Sukupuolittunut rikollisuus uhrin näkökulmasta</title>
   </head>
-  <body>
+  <body class="scrollable">
+
+    <div id="page1" class="page">
+      <div>
+        <h1>Miehet ja naiset rikoksen uhreina: Tältä näyttää sukupuolittunut rikollisuus Suomessa</h1>
+        <img src="police-pic.jpeg">
+        <h2>Nais- ja miespuolisten rikosuhrien rikollisuuden kokemukset eroavat toisistaan monella tavalla. Jotkin rikostyypit ovat selkeästi sukupuolittuneita, mutta yhtäläisyyksiäkin löytyy.</h2>
+      </div>
+      <a href="#page2"><div class="next"></div></a>
+    </div>
+
+
+    <div id="page2" class="page">
+      <a href="#page1"><div class="previous"></div></a>
+      <div>
+        <h3>Mies- ja naispuolisten rikosuhrien eriävät uhrikokemukset</h3>
+        <p>Tiedetään, että miehet ja naiset kohtaavat eri tyyppistä rikollisuutta. Siitä huolimatta rikosuhreista löytyy hyvin vähän tilastotietoa. Tilastokeskuksella on tarjolla vain kaksi tilastotietokantaa jossa käsitellään rikoksen uhreja, mutta kymmeniä jotka koskevat tekijöitä. Tietokannot ovat myöskin puutteellisia siinä mielessä, että niistä puuttuu monia tavallisia rikostyyppejä, esimerkiksi kunnianloukkausrikokset, liikennerikokset, elinkeinorikokset ja petosrikokset.</p>
+        <p>Tässä jutussa tutkitaan saatavilla olevaa tilastotietoa sukupuolen näkökulmasta. Jutussa pyritään hahmottamaan mies- ja naispuolisten rikosuhrien kokemuksia tilastotiedon avulla.</p>
+        <p><strong>Huom:</strong> tämä on niin kutsuttu mock up-juttu ja siitä puuttuu tiettyjä lähdetietoja ja esimerkiksi asiantuntijakommentteja Jutun tarkoituksena on tutkia erilaisia datajournalistisia esitystapoja.</p>
+      </div>
+      <a href="#page3"><div class="next"></div></a>
+    </div>
+
+    <div id="page3" class="page">
+      <a href="#page2"><div class="previous"></div></a>
+      <div>
+        <canvas></canvas>
+        <h3>Naispuolisten uhrien osuus kasvaa</h3>
+        <p>Historiallisesti suurin osa rikosten uhreista on ollut miehiä, mutta naisten osuus uhreista on kasvanut tasaisesti.</p>
+        <p>Vuonna 2020 naisuhrien määrä ylitti miesuhrien määrän mikä johtui terapiakeskus Vastaamoon kohdistuneesta tietomurrosta. Silloin kirjattiin noin 9 000 kiritysrikosta ja 8 000 kiristyksen yritystä, joissa oli 5 500 miesuhria ja 11 500 naisuhria. Yleensä näitä rikoksia ilmenee yhteensä alle 2 000 vuodessa.</p>
+        <p>Tilastokeskuksen materiaalissa ei ole tietoja ajasta ennen vuotta 2009.</p>
+      </div>
+      <a href="#page4"><div class="next"></div></a>
+    </div>
+
+    <div id="page4" class="page">
+      <a href="#page3"><div class="previous"></div></a>
+      <div>
+        <h3>Naisuhrien kokemukset liittyvät seksuaalirikoksiin</h3>
+        <p>Raiskaus, törkeä raiskaus, lapsen seksuaalinen hyväksikäyttö, törkeä lapsen seksuaalinen hyväksikäyttö, seksuaalinen ahdistelu, pakottaminen seksuaaliseen tekoon, paritus ja vainoaminen ovat kaikki rikoksia joissa naisuhrit ovat selvästi yliedustettuja.</p>
+        <p>Näissä rikoksissa on hyvin vähän miesuhreja suhteessa naisuhreihin ja niiden yhdistävä tekijä on, että ne melkein aina liittyvät seksiin. Seksuaalirikokset ovat vahvasti sukupuolittuneita rikoksia.</p>
+        <canvas></canvas>
+      </div>
+      <a href="#page5"><div class="next"></div></a>
+    </div>
+
+    <div id="page5" class="page">
+      <a href="#page4"><div class="previous"></div></a>
+      <div>
+        <canvas></canvas>
+        <h3>Erittäin vähän miespuolisia raiskauksen uhreja</h3>
+        <p>Törkeä raiskaus on tyypillinen esimerkki rikoksesta jossa naisuhrit ovat selkeästi yliedustettuja. Törkeäksi raiskaukseksi lasketaan raiskaukset joihin liittyy vakavia raskauttavia seikkoja, kuten useita tekijöitä, merkittävää kärsimystä tai vakavalla väkivallalla uhkaaminen.</p>
+        <p>Törkeiden raiskausten määrä lähti kasvuun vuonna 2015 ja on sen jälkeen pysytellyt korotetulla tasolla.</p>
+        <p>Perusmuotoisia raiskauksia tapahtuu noin kymmenen kertaa enemmän kuin törkeitä raiskauksia ja niissä miesuhrien suhde naisuhreihin on vieläkin pienempi.</p>
+      </div>
+      <a href="#page6"><div class="next"></div></a>
+    </div>
+
+    <div id="page6" class="page">
+      <a href="#page5"><div class="previous"></div></a>
+      <div>
+        <h3>Seksuaalirikokset koskettavat myös lapsia</h3>
+        <p>Lapsen seksuaalinen hyväksikäyttö eroaa siinä mielessä muista seksuaalirikoksista, että siinä miespuolisten uhrien määrä on melkein vakio. Suurin osa uhreista on siis tyttöjä, mutta heidän joukkoonsa mahtuu muutama poikakin.</p>
+        <p>Perusmuotoisen ja törkeän lapsen seksuaalisen hyväksikäytön määritelmä on, että uhri on kuuttatoista vuotta nuorempi. Kun uhri on yli kuusitoista vuotta rikokset tutkitaan raiskauksina ja törkeinä raiskauksina.</p>
+        <canvas></canvas>
+      </div>
+      <a href="#page7"><div class="next"></div></a>
+    </div>
+
+    <div id="page7" class="page">
+      <a href="#page6"><div class="previous"></div></a>
+      <div>
+        <canvas></canvas>
+        <h3>Myös vainoaminen koskettaa naisia</h3>
+        <p>Vainoaminen tuli rikoslakiin vuonna 2013. Sillä tarkoitetaan tilannetta jossa tekijä uhkaa, seuraa, tarkkailee tai näihin rinnastettavilla tavoilla vainoaa uhria.</p>
+        <p>Vainoaminen on alusta alkaen ollut rikos, jossa suurin osa uhreista on naisia.</p>
+      </div>
+      <a href="#page8"><div class="next"></div></a>
+    </div>
+
+    <div id="page8" class="page">
+      <a href="#page7"><div class="previous"></div></a>
+      <div>
+        <h3>Ihmiskauppa koskettaa kumpaakin sukupuolta</h3>
+        <p>Ihmiskauppa on rikos joka voi liittyä paritukseen, mutta myös muuhun laittomaan pakkotyöhön, esimerkiksi ravintolassa tai työmaalla.</p>
+        <p>Ihmiskaupan uhrit ovat usein naisia, mutta pidemmällä aikavälillä nais- ja miesuhrien suhde tasaantuu.</p>
+        <canvas></canvas>
+      </div>
+      <a href="#page9"><div class="next"></div></a>
+    </div>
+
+    <div id="page9" class="page">
+      <a href="#page8"><div class="previous"></div></a>
+      <div>
+        <h3>Miesten uhrikokemukset liittyvät väkivaltaan</h3>
+        <p>Miesten kohtaamassa rikollisuudessa ei ole yhtään rikostyyppiä, jossa miesuhrit olisivat yhtä yliedustettuja kuin naisuhrit seksuaalirikoksissa. Miehet ovat kuitenkin yliedustettuja monissa muissa rikostyypeissä.</p>
+        <p>Tyypillisiä rikoksia joissa miespuoliset uhrit ovat voimakkaasti yliedustettuja ovat tappo, tapon yritys, murhan yritys, perusmuotoinen ja törkeä pahoinpitely, perusmuotoinen ja törkeä ryöstö, ja perusmuotoinen ja törkeä kiristys.</p>
+        <p>Rikoksia joissa miesuhrit ovat jonkin verran yliedustettuja ovat murha, pahoinpitely ja kuolemantuottamus.</p>
+      </div>
+      <a href="#page10"><div class="next"></div></a>
+    </div>
+
+    <div id="page10" class="page">
+      <a href="#page9"><div class="previous"></div></a>
+      <div></div>
+      <a href="#page11"><div class="next"></div></a>
+    </div>
+
+    <div id="page11" class="page">
+      <a href="#page10"><div class="previous"></div></a>
+      <div></div>
+      <a href="#page12"><div class="next"></div></a>
+    </div>
+
+    <div id="page12" class="page">
+      <a href="#page11"><div class="previous"></div></a>
+      <div></div>
+      <a href="#page13"><div class="next"></div></a>
+    </div>
+
+    <div id="page13" class="page">
+      <a href="#page12"><div class="previous"></div></a>
+      <div></div>
+      <a href="#page14"><div class="next"></div></a>
+    </div>
+
+    <div id="page14" class="page">
+      <a href="#page13"><div class="previous"></div></a>
+      <div></div>
+      <a href="#page15"><div class="next"></div></a>
+    </div>
+
+    <div id="page15" class="page">
+      <a href="#page14"><div class="previous"></div></a>
+      <div></div>
+      <a href="#page16"><div class="next"></div></a>
+    </div>
+
+    <div id="page16" class="page">
+      <a href="#page15"><div class="previous"></div></a>
+      <div></div>
+      <a href="#page17"><div class="next"></div></a>
+    </div>
+
+    <div id="page17" class="page">
+      <a href="#page16"><div class="previous"></div></a>
+      <div></div>
+      <a href="#page18"><div class="next"></div></a>
+    </div>
+
+    <div id="page18" class="page">
+      <a href="#page17"><div class="previous"></div></a>
+      <div></div>
+      <a href="#page19"><div class="next"></div></a>
+    </div>
+
+    <div id="page19" class="page">
+      <a href="#page18"><div class="previous"></div></a>
+      <div></div>
+    </div>
+
+
+
 
 
 

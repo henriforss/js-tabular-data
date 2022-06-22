@@ -4,14 +4,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles2.css">
-    <!-- <script src="script.js" defer></script> -->
+    <script src="script2.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <title>Sukupuolittunut rikollisuus uhrin näkökulmasta</title>
   </head>
   <body class="scrollable">
 
     <div id="page1" class="page">
       <div>
-        <h1>Miehet ja naiset rikoksen uhreina: Tältä näyttää sukupuolittunut rikollisuus Suomessa</h1>
+        <h1>Miehet ja naiset rikosten uhreina: Tältä näyttää sukupuolittunut rikollisuus Suomessa</h1>
         <img src="police-pic.jpeg">
         <h2>Nais- ja miespuolisten rikosuhrien rikollisuuden kokemukset eroavat toisistaan monella tavalla. Jotkin rikostyypit ovat selkeästi sukupuolittuneita, mutta yhtäläisyyksiäkin löytyy.</h2>
       </div>
@@ -33,7 +35,7 @@
     <div id="page3" class="page">
       <a href="#page2"><div class="previous"></div></a>
       <div>
-        <canvas></canvas>
+        <canvas id="canvas-page3"></canvas>
         <h3>Naispuolisten uhrien osuus kasvaa</h3>
         <p>Historiallisesti suurin osa rikosten uhreista on ollut miehiä, mutta naisten osuus uhreista on kasvanut tasaisesti.</p>
         <p>Vuonna 2020 naisuhrien määrä ylitti miesuhrien määrän mikä johtui terapiakeskus Vastaamoon kohdistuneesta tietomurrosta. Silloin kirjattiin noin 9 000 kiritysrikosta ja 8 000 kiristyksen yritystä, joissa oli 5 500 miesuhria ja 11 500 naisuhria. Yleensä näitä rikoksia ilmenee yhteensä alle 2 000 vuodessa.</p>
@@ -48,7 +50,6 @@
         <h3>Naisuhrien kokemukset liittyvät seksuaalirikoksiin</h3>
         <p>Raiskaus, törkeä raiskaus, lapsen seksuaalinen hyväksikäyttö, törkeä lapsen seksuaalinen hyväksikäyttö, seksuaalinen ahdistelu, pakottaminen seksuaaliseen tekoon, paritus ja vainoaminen ovat kaikki rikoksia joissa naisuhrit ovat selvästi yliedustettuja.</p>
         <p>Näissä rikoksissa on hyvin vähän miesuhreja suhteessa naisuhreihin ja niiden yhdistävä tekijä on, että ne melkein aina liittyvät seksiin. Seksuaalirikokset ovat vahvasti sukupuolittuneita rikoksia.</p>
-        <canvas></canvas>
       </div>
       <a href="#page5"><div class="next"></div></a>
     </div>
@@ -56,7 +57,7 @@
     <div id="page5" class="page">
       <a href="#page4"><div class="previous"></div></a>
       <div>
-        <canvas></canvas>
+        <canvas id="canvas-page5"></canvas>
         <h3>Erittäin vähän miespuolisia raiskauksen uhreja</h3>
         <p>Törkeä raiskaus on tyypillinen esimerkki rikoksesta jossa naisuhrit ovat selkeästi yliedustettuja. Törkeäksi raiskaukseksi lasketaan raiskaukset joihin liittyy vakavia raskauttavia seikkoja, kuten useita tekijöitä, merkittävää kärsimystä tai vakavalla väkivallalla uhkaaminen.</p>
         <p>Törkeiden raiskausten määrä lähti kasvuun vuonna 2015 ja on sen jälkeen pysytellyt korotetulla tasolla.</p>
@@ -71,7 +72,7 @@
         <h3>Seksuaalirikokset koskettavat myös lapsia</h3>
         <p>Lapsen seksuaalinen hyväksikäyttö eroaa siinä mielessä muista seksuaalirikoksista, että siinä miespuolisten uhrien määrä on melkein vakio. Suurin osa uhreista on siis tyttöjä, mutta heidän joukkoonsa mahtuu muutama poikakin.</p>
         <p>Perusmuotoisen ja törkeän lapsen seksuaalisen hyväksikäytön määritelmä on, että uhri on kuuttatoista vuotta nuorempi. Kun uhri on yli kuusitoista vuotta rikokset tutkitaan raiskauksina ja törkeinä raiskauksina.</p>
-        <canvas></canvas>
+        <canvas id="canvas-page6"></canvas>
       </div>
       <a href="#page7"><div class="next"></div></a>
     </div>
@@ -79,8 +80,8 @@
     <div id="page7" class="page">
       <a href="#page6"><div class="previous"></div></a>
       <div>
-        <canvas></canvas>
-        <h3>Myös vainoaminen koskettaa naisia</h3>
+        <canvas id="canvas-page7"></canvas>
+        <h3>Myös vainoaminen kohdistuu naisiin</h3>
         <p>Vainoaminen tuli rikoslakiin vuonna 2013. Sillä tarkoitetaan tilannetta jossa tekijä uhkaa, seuraa, tarkkailee tai näihin rinnastettavilla tavoilla vainoaa uhria.</p>
         <p>Vainoaminen on alusta alkaen ollut rikos, jossa suurin osa uhreista on naisia.</p>
       </div>
@@ -93,7 +94,7 @@
         <h3>Ihmiskauppa koskettaa kumpaakin sukupuolta</h3>
         <p>Ihmiskauppa on rikos joka voi liittyä paritukseen, mutta myös muuhun laittomaan pakkotyöhön, esimerkiksi ravintolassa tai työmaalla.</p>
         <p>Ihmiskaupan uhrit ovat usein naisia, mutta pidemmällä aikavälillä nais- ja miesuhrien suhde tasaantuu.</p>
-        <canvas></canvas>
+        <canvas id="canvas-page8"></canvas>
       </div>
       <a href="#page9"><div class="next"></div></a>
     </div>
@@ -103,69 +104,118 @@
       <div>
         <h3>Miesten uhrikokemukset liittyvät väkivaltaan</h3>
         <p>Miesten kohtaamassa rikollisuudessa ei ole yhtään rikostyyppiä, jossa miesuhrit olisivat yhtä yliedustettuja kuin naisuhrit seksuaalirikoksissa. Miehet ovat kuitenkin yliedustettuja monissa muissa rikostyypeissä.</p>
-        <p>Tyypillisiä rikoksia joissa miespuoliset uhrit ovat voimakkaasti yliedustettuja ovat tappo, tapon yritys, murhan yritys, perusmuotoinen ja törkeä pahoinpitely, perusmuotoinen ja törkeä ryöstö, ja perusmuotoinen ja törkeä kiristys.</p>
-        <p>Rikoksia joissa miesuhrit ovat jonkin verran yliedustettuja ovat murha, pahoinpitely ja kuolemantuottamus.</p>
+        <p>Tyypillisiä rikoksia joissa miespuoliset uhrit ovat voimakkaasti yliedustettuja ovat tappo, tapon yritys, murhan yritys, törkeä pahoinpitely, törkeä ryöstö ja törkeä kiristys.</p>
+        <p>Rikoksia joissa miesuhrit ovat jonkin verran yliedustettuja ovat murha, perusmuotoinen pahoinpitely ja kuolemantuottamus.</p>
       </div>
       <a href="#page10"><div class="next"></div></a>
     </div>
 
     <div id="page10" class="page">
       <a href="#page9"><div class="previous"></div></a>
-      <div></div>
+      <div>
+        <canvas id="canvas-page10"></canvas>
+        <h3>Miehiä pahoinpidellään suhteessa enemmän</h3>
+        <p>Törkeä, ei-seksuaalinen väkivalta on tyypillistä miesten kohtaamalle sukupuolittuneelle rikollisuudelle. Mitä törkeämmästä väkivallasta on kyse, sitä suuremmaksi kasvaa miesten osuus uhreista. Miehen on monta kertaa todennäköisempää joutua törkeän väkivallan uhriksi naiseen verrattuna.</p>
+        <p>Kun on kyse lievemmästä väkivallasta mies- ja naisuhrien suhde tasaantuu. Lievän pahoinpitelyn kohdalla naisuhreja on melkein yhtä paljon kuin miesuhreja. On selvää, että naisuhrit kohtaavat paljon vähemmän kovaa, ei-seksuaalista väkivaltaa kuin miesuhrit.</p>
+      </div>
       <a href="#page11"><div class="next"></div></a>
     </div>
 
     <div id="page11" class="page">
       <a href="#page10"><div class="previous"></div></a>
-      <div></div>
+      <div>
+        <h3>Näin pahoinpitelyrikokset määritellään</h3>
+        <p>Suomessa pahoinpitelyrikokset luokitellaan käytetyn väkivallan perusteella. Lievä pahoinpitely on lievin pahoinpitelyn muoto. Siinä väkivallan ja seuraamusten katsotaan olevan vähäisiä.</p>
+        <p>Perusmuotoinen pahoinpitely on tavallisin pahoinpitelyn muoto. Se on yleensä lyhytkestoinen, ei erityisen julma oikeudellisesta näkökulmasta ja siihen ei liity aseita. Kun pahoinpitelyyn liittyy aseita tai kun käytetty väkivalta on erityisen julmaa pahoinpitely muuttuu törkeäksi pahoinpitelyksi.</p>
+        <p>Kun törkeä pahoinpitely jatkuu pidemmän aikaa ja siihen liittyy aseita tai julmaa väkivaltaa voidaan puhua tapon yrityksestä. Siitä seuraava aste on murhan yritys ja siihen liittyy edellä mainittujen seikkojen lisäksi vakaata harkintaa ja erityistä julmuutta.</p>
+        <canvas id="canvas-page11"></canvas>
+      </div>
       <a href="#page12"><div class="next"></div></a>
     </div>
 
     <div id="page12" class="page">
       <a href="#page11"><div class="previous"></div></a>
-      <div></div>
+      <div>
+        <canvas id="canvas-page12"></canvas>
+        <h3>Naiset harvemmin ryöstön uhreina</h3>
+        <p>Miesuhrit ovat myös yliedustettuja kaikissa ryöstörikoksissa, eli perusmuotoisessa ja törkeässä ryöstössä sekä näiden yrityksessä. Kuten pahoinpitelyissä, miesten osuus kasvaa mitä törkeämmästä rikoksesta on kyse. Törkeiden ryöstöjen määrä on ollut nousussa 2010-luvun puolesta välistä lähtien.</p>
+        <p>Myös ryöstörikoksiin liittyy väkivaltaa, erityisesti sillä uhkaamista. Voidaankin sanoa, että ryöstön ja törkeän ryöstön ero on siinä että törkeässä ryöstössä uhataan aseella.</p>
+      </div>
       <a href="#page13"><div class="next"></div></a>
     </div>
 
     <div id="page13" class="page">
       <a href="#page12"><div class="previous"></div></a>
-      <div></div>
+      <div>
+        <h3>Murhat koskettavat kumpaakin sukupuolta</h3>
+        <p>Miesuhrit ovat jonkin verran yliedustettuja murhissa pidemmällä aikavälillä, mutta Tilastokeskuksen tarkastelujaksolle mahtuu myös vuosia jolloin naispuolisia murhan uhreja on ollut enemmän.</p>
+        <p>Murhat ovat erittäin harvinaisia rikoksia Suomessa ja vaihtelu mies- ja naisuhrien määrässä on suhteessa suurta.</p>
+        <canvas id="canvas-page13"></canvas>
+      </div>
       <a href="#page14"><div class="next"></div></a>
     </div>
 
     <div id="page14" class="page">
       <a href="#page13"><div class="previous"></div></a>
-      <div></div>
+      <div>
+        <h3>Kaikki rikollisuus ei ole sukupuolittunutta</h3>
+        <p>Tilastoista selviää, että miesten ja naisten sukupuolittuneet rikolliisuuden kokemukset eroavat toisistaan merkittävästi. Naisuhreille tyypillistä sukupuolittunutta rikollisuutta ovat seksuaalirikokset, miesuhreille tyypillistä on törkeä ei-seksuaalinen väkivalta.</p>
+        <p>Kaikki rikollisuus ei kuitenkaan ole sukupuolittunutta. Sukupuolittuneen rikollisuuden lisäksi löytyy useita rikostyyppejä, joissa nais- ja miesuhrien suhde on lähes sama. Esimerkkejä tällaisista rikoksista ovat lievä pahoinpitely, laiton uhkaus ja vapaudenriisto.</p>
+      </div>
       <a href="#page15"><div class="next"></div></a>
     </div>
 
     <div id="page15" class="page">
       <a href="#page14"><div class="previous"></div></a>
-      <div></div>
+      <div>
+        <h3>Sukupuolittunut rikollisuus saa näkyvyyttä</h3>
+        <p>Sukupuolittunut rikollisuus on viime vuosien aikana noussut yhteiskunnallisen keskustelun aiheeksi pääosin naisten kohtaaman sukupuolittuneen rikollisuuden näkökulmasta. Tilastokeskuksen tiedot kuitenkin näyttävät että sukupuolittunut rikollisuus koskee myös miehiä.</p>
+        <p>Sukupuolittuneesta rikollisuudesta keskustellessa unohtuu kuitenkin monesti, että sukupuolittunut rikollisuus edustaa vain pientä osaa suomalaisten miesten ja naisten kohtaamasta rikollisuudesta. Yli 75 prosenttia sekä mies- että naisuhrien kohtaamasta rikollisuudesta ei ole rikosnimikkeiden tasolla sukupuolittunutta.</p>
+      </div>
       <a href="#page16"><div class="next"></div></a>
     </div>
 
     <div id="page16" class="page">
       <a href="#page15"><div class="previous"></div></a>
-      <div></div>
+      <div>
+        <canvas id="canvas-page16"></canvas>
+        <h3>Koti on naisen vaarallisin paikka</h3>
+        <p>Kolme tavallisinta naisuhrien kohtaamaa rikosta ovat pahoinpitely, laiton uhkaus ja lievä pahoinpitely. Tekijä on yleensä uhrin tuttu ja tekopaikka yhteinen asunto. Koti on todellakin naiselle vaarallisin paikka.</p>
+        <p>Sellainen sukupuolittunut rikollisuus jossa naiset ovat reilusti yliedustettuja, eli pääosin seksuaalirikollisuus, edustaa alle 25 prosenttia kaikesta naisuhrien kohtaamasta rikollisuudesta.</p>
+      </div>
       <a href="#page17"><div class="next"></div></a>
     </div>
 
     <div id="page17" class="page">
       <a href="#page16"><div class="previous"></div></a>
-      <div></div>
+      <div>
+        <h3>Katu on miehen vaarallisin paikka</h3>
+        <p>Kolme tavallisinta miesuhrien kohtaamaa rikosta ovat samat kuin naisuhrien kohtaamat, eli pahoinpitely, laiton uhkaus ja lievä pahoinpitely. Tekijät ovat pääosin uhrille tuntemattomia ja tekopaikka on kodin ulkopuolella.</p>
+        <p>Miesuhrien osuus parisuhteissa tapahtuvassa rikollisuudessa on hyvin pientä. Parisuhteiden ulkopuolella tapahtuvassa rikollisuudessa miesuhrien osuus on sen sijaan korkea.</p>
+        <canvas id="canvas-page17"></canvas>
+      </div>
       <a href="#page18"><div class="next"></div></a>
     </div>
 
     <div id="page18" class="page">
       <a href="#page17"><div class="previous"></div></a>
-      <div></div>
+      <div>
+        <h3>Samantyyppiset kokemukset, eri olosuhteet</h3>
+        <p>Nais- ja miesuhrien kohtaama rikollisuus on hyvin pitkältään tyypiltään, eli rikosnimikkeiltään, samankaltaista. Eroa löytyy kuitenkin olosuhteista, eli tekijän profiilissa ja tekopaikassa. Sen lisäksi löytyy joitakin rikostyyppejä jotka ovat vahvasti sukupuolittuneita, esimerkiksi seksuaalirikokset ja törkeät väkivaltarikokset.</p>
+      </div>
       <a href="#page19"><div class="next"></div></a>
     </div>
 
     <div id="page19" class="page">
       <a href="#page18"><div class="previous"></div></a>
-      <div></div>
+      <div>
+        <h3><label for="selector">Haluatko lisää tietoa?</label></h3>
+        <p>Tästä valikosta pääset tutustumaan kaikkiin jutuissa käytettyihin tietoihin. Tiedot ovat peräisin <a target="_blank" href="https://pxweb2.stat.fi/PxWeb/pxweb/fi/StatFin/StatFin__rpk/statfin_rpk_pxt_13fr.px/">Tilastokeskukselta</a>.</p>
+        <p>
+          <select name="selector" id="dropdown"></select>
+        </p>
+        <canvas id="canvas-page19"></canvas>
+      </div>
     </div>
 
 

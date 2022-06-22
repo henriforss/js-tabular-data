@@ -84,10 +84,15 @@ img {
 canvas {
   width: 90%;
   height: 50%;
-  background-color: bisque;
   margin: 10% 5% 10% 5%;
 }
 
 .scrollable {
   overflow: hidden;
+}
+
+#dropdown {
+  margin: 0 auto;
+  justify-self: center;
+  width: 100%;
 }

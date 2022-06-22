@@ -61,74 +61,55 @@ const getData = async () => {
   return crimeObjectsMerged
 }
 
-/* Create a table with data for most recent year. */
-const createTable = async () => {
+/* Function to plot data in bar chart. Takes crime name as parameter. */
+const barchartCrimeData = async ([crime, canvas]) => {
   const crimeObjectsMerged = await getData()
-  
-  const crimeList = document.getElementById("table")
 
-  /* Create table data and append to document. */
+  /* Create variable. */
+  let crimeToChart = ""
+
+  /* Find crime-obj with parameter and assign to variable. */
   crimeObjectsMerged.forEach(obj => {
-    const row = document.createElement("tr")
-    const cell1 = document.createElement("td")
-    const cell2 = document.createElement("td")
-    const cell3 = document.createElement("td")
-    cell1.innerText = obj.crime
-    cell2.innerText = obj.maleVictim[obj.maleVictim.length -1]
-    cell3.innerText = obj.femaleVictim[obj.femaleVictim.length -1]
-    row.appendChild(cell1)
-    row.appendChild(cell2)
-    row.appendChild(cell3)
-    crimeList.appendChild(row)
+    if (obj.crime.toLowerCase().includes(crime.toLowerCase())) {
+      crimeToChart = obj
+    }
   })
-}
 
-/* Visualize all data. */
-const chartData = async () => {
-  const crimeObjectsMerged = await getData()
-
-  const crimeCharts = document.getElementById("charts")
-
-  crimeObjectsMerged.forEach(obj => {
-    const canvas = document.createElement("canvas")
-    crimeCharts.appendChild(canvas)
-
-    const ctx = canvas.getContext("2d")
-    const chart = new Chart(ctx, {
-      type: "bar",
-      data: {
-        labels: obj.year,
-        datasets: [{
-          label: "Miespuolinen uhri",
-          data: obj.maleVictim,
-          borderWidth: 0,
-          backgroundColor: "rgb(66, 182, 245)"
-        }, {
-          label: "Naispuolinen uhri",
-          data: obj.femaleVictim,
-          borderWidth: 0,
-          backgroundColor: "rgb(255, 155, 255)"
-        }]
+  const ctx = document.getElementById(canvas).getContext("2d")
+  const chart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: crimeToChart.year,
+      datasets: [{
+        label: "Miespuolinen uhri",
+        data: crimeToChart.maleVictim,
+        borderWidth: 0,
+        backgroundColor: "rgb(66, 182, 245)"
+      }, {
+        label: "Naispuolinen uhri",
+        data: crimeToChart.femaleVictim,
+        borderWidth: 0,
+        backgroundColor: "rgb(255, 155, 255)"
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
       },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true
-          }
-        },
-        plugins: {
-          title: {
-            display: true,
-            text: obj.crime
-          }
+      plugins: {
+        title: {
+          display: true,
+          text: crimeToChart.crime
         }
       }
-    })
-  })
+    }
+  })  
 }
 
-/* Visualize top 10 most common crimes. */
-const chartTopten = async () => {
+/* Function to chart data in pie chart */
+const piechartCrimeData = async () => {
   const crimeObjectsMerged = await getData()
   
   /* Sort according to number of crimes in most recent year. */
@@ -157,13 +138,8 @@ const chartTopten = async () => {
     femaleData.victimNumber.push(obj.femaleVictim[obj.femaleVictim.length - 1])
   })
 
-  const pieCharts = document.getElementById("piecharts")
-  const canvas1 = document.createElement("canvas")
-  const canvas2 = document.createElement("canvas")
-  pieCharts.appendChild(canvas1)
-  pieCharts.appendChild(canvas2)
-
-  const ctx1 = canvas1.getContext("2d")
+  /* Plot male victim data. */
+  const ctx1 = document.getElementById("canvas-page17").getContext("2d")
   const chart1 = new Chart(ctx1, {
     type: 'pie',
     data: {
@@ -200,8 +176,8 @@ const chartTopten = async () => {
       }
     }
   })
-
-  const ctx2 = canvas2.getContext("2d")
+  
+  const ctx2 = document.getElementById("canvas-page16").getContext("2d")
   const chart2 = new Chart(ctx2, {
     type: 'pie',
     data: {
@@ -228,7 +204,7 @@ const chartTopten = async () => {
       plugins: {
         title: {
           display: true,
-          text: "Naispuoliset uhrit uhrit (2021)"
+          text: "Naispuoliset uhrit (2021)"
         },
         legend: {
           display: true,
@@ -240,8 +216,48 @@ const chartTopten = async () => {
   })
 }
 
+/* Function to populate dropdown menu on last page. */
+const populateDropdown = async () => {
+  const crimeObjectsMerged = await getData()
 
+  const selector = document.getElementById("dropdown")
 
-createTable()
-chartData()
-chartTopten()
+  crimeObjectsMerged.forEach(obj => {
+    const option = document.createElement("option")
+    option.value = obj.crime
+    option.innerText = obj.crime
+    selector.appendChild(option)
+  })
+}
+
+/* Event listener listening for changes in dropdown menu on last page. */
+document.getElementById("dropdown").onchange = () => {
+  plotAnyChart()
+}
+
+/* Function to plot any chart on last page. */
+const plotAnyChart = async () => {
+  const crimeToPlot = document.getElementById("dropdown").value
+  const chartStatus = Chart.getChart("canvas-page19")
+  if (chartStatus != undefined) {
+    chartStatus.destroy()
+  }
+  barchartCrimeData([crimeToPlot, "canvas-page19"]) 
+}
+
+/* Plot barcharts. */
+barchartCrimeData(["yhteensä", "canvas-page3"])
+barchartCrimeData(["törkeä raiskaus", "canvas-page5"])
+barchartCrimeData(["lapsen seksuaalinen hyväksikäyttö 20:6", "canvas-page6"])
+barchartCrimeData(["vainoaminen", "canvas-page7"])
+barchartCrimeData(["ihmiskauppa", "canvas-page8"])
+barchartCrimeData(["tapon yritys", "canvas-page10"])
+barchartCrimeData(["törkeä pahoinpitely", "canvas-page11"])
+barchartCrimeData(["törkeä ryöstö", "canvas-page12"])
+barchartCrimeData(["murha 21:2§", "canvas-page13"])
+
+/* Plot piecharts. */
+piechartCrimeData()
+
+/* Populate dropdown menu. */
+populateDropdown()
